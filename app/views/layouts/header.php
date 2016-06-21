@@ -30,12 +30,16 @@
 					<span class="icon-bar"></span>
 				</button>
 				<a class="navbar-brand" href="/">E-commerce</a>
+				<span id="cart" class="pull-left">
+					<a href="#" title="Your cart" data-toggle="tooltip" data-placement="bottom">
+						<i class="fa fa-cart-plus fa-2x"></i> <span class="badge">0</span>
+					</a>
+				</span>
 			</div>
 	
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse navbar-ex1-collapse">
-				<ul class="nav navbar-nav navbar-right">
-
+				<ul class="nav navbar-nav navbar-right">		
 				<?php if (isset($_SESSION['username'])) : ?>
 
 					<li class="dropdown">
