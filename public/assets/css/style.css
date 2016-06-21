@@ -1,0 +1,44 @@
+html, body {
+	height: 100%;
+}
+body {
+	font-family: Georgia, sans-serif;
+	font-size: 62.5%;
+	font-size: 16px;
+	font-size: 1.6em;
+}
+.navbar {
+	background: #00897b;
+	padding: 20px 0;
+}
+.navbar a.navbar-brand, #signin > a, #signup > a {
+	color: white;
+}
+.navbar a.navbar-brand {
+	font-weight: 400;
+	font-size: 24px;
+	font-size: 2.4em;
+}
+.navbar a.navbar-brand:hover {
+	color: #d9534f;
+}
+.navbar li > a {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+#signin, #signup {
+	border: 1px solid rgba(0, 0, 0, 0.15);
+	border-radius: 3px;
+}
+#signin {
+	margin-right: 5px;
+}
+#signin:hover {
+	background: #2c9d92;
+}
+#signup {
+	background: #ff6f0c;
+}
+#signup:hover {
+	background: #ff7c26;
+}

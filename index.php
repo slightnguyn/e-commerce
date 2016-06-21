@@ -1,6 +1,5 @@
 <?php
 
-require 'app/core/App.php';
-require 'app/core/Controller.php';
+require 'app/init.php';
 
 $app = new App();
