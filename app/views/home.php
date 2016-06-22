@@ -1,6 +1,9 @@
 <?php include_once 'app/views/layouts/header.php'; extract($data); ?>
 
 	<div class="container-fluid">
+	<?php if (count($books) == 0) : ?>
+		<div class="notify"><span class="text-danger"><i class="fa fa-bell"></i></span> Book library is empty! Please come back again.</div>
+	<?php else: ?>
 		<div class="row" id="books">
 		<?php foreach ($books as $book) : ?>
 			<div class="col-md-4 col-sm-6 col-xs-10 book">
@@ -60,6 +63,7 @@
 			</div>
 		<?php endforeach; ?>
 		</div>
+	<?php endif; ?>
 	</div>
 
 <?php include_once 'app/views/layouts/footer.php'; ?>
