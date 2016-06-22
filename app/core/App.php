@@ -37,16 +37,17 @@ class App
 			$this->params = array_values($pieces);
 		}
 
-		if (file_exists(__DIR__ . '/../controllers/' . $this->controller . '.php')) {
-			require __DIR__ . '/../controllers/' . $this->controller . '.php';
+		$controllerPath = __DIR__ . '/../controllers/' . $this->controller . '.php';
+		if (file_exists($controllerPath)) {
+			require $controllerPath;
 			$this->controller = new $this->controller();
 		}
 		else {
-			exit('404: File Not Found!');
+			handleError();
 		}
 
 		if (! is_callable([$this->controller, $this->method])) {
-			exit('Error: 405 Bad Request!');
+			handleError();
 		}
 		
 		// run app

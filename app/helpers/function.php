@@ -1,5 +1,16 @@
 <?php
 
+function handleError($file = NULL) {
+	if (ENV !== 'local') {
+		if ($file !== NULL && file_exists($file)) {
+			include $file;
+		}
+		else {
+			include 'app/views/errors/error.php';
+		}
+	}
+}
+
 function renderRating($star) {
 	for ($i = 1; $i <= $star; $i++) {
 		echo '<span class="text-info"><i class="fa fa-star"';
