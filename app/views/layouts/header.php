@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<noscript>confirm('Please enable javascript and come back website!');</noscript>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -31,12 +32,14 @@
 				</button>
 				<a class="navbar-brand" href="/">E-commerce</a>
 				<span id="cart" class="pull-left">
-					<a href="#" title="Your cart" data-toggle="tooltip" data-placement="bottom">
-						<i class="fa fa-cart-plus fa-2x"></i> <span class="badge">0</span>
+					<a href="/cart/" title="Your cart" data-toggle="tooltip" data-placement="bottom">
+						<i class="fa fa-cart-plus fa-2x"></i> 
+						<span class="badge items <?php echo isset($_SESSION['items']) ? 'cart-has-item' : 'empty-cart'; ?>">
+						<?php echo isset($_SESSION['items']) ? $_SESSION['items'] : 0; ?></span>
 					</a>
 				</span>
 			</div>
-	
+
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse navbar-ex1-collapse">
 				<ul class="nav navbar-nav navbar-right">		

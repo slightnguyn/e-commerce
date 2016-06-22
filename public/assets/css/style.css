@@ -61,6 +61,17 @@ body {
 .my-hidden {
 	display: none;
 }
+.empty-cart {
+	background: #777;
+	color: #fff;
+}
+.cart-has-item {
+	background: #E68484;
+	color: #231a1c;
+}
+#cart-title {
+	padding-bottom: 20px;
+}
 
 
 @media (max-width: 480px), (max-width: 767px) {

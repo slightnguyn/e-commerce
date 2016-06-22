@@ -22,7 +22,7 @@
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-md-4">
-								<p class="book-image"><img src="<?php echo App::APP_URL . '/public/upload/' . $book->image; ?>" alt="<?php echo $book->title; ?>" class="img-responsive" width="200" height="200"></p>
+								<p class="book-image"><img src="<?php echo App::BOOK_PATH . $book->image; ?>" alt="<?php echo $book->title; ?>" class="img-responsive" width="200" height="200"></p>
 							</div>
 							<div class="col-md-8 hidden-sm hidden-xs book-info">
 								<ul style="list-style-type: square;">
@@ -44,7 +44,7 @@
 					<div class="panel-footer">
 						<div class="add-cart">
 							<p>
-								<form action="/cart/add">
+								<form action="/cart/add" method="POST">
 									<input type="hidden" name="bookId" value="<?php echo $book->id; ?>">
 									<button class="btn btn-primary pull-right">Add to Cart</button>
 								</form>

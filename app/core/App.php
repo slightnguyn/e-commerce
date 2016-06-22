@@ -3,6 +3,7 @@
 class App
 {
 	const APP_URL = 'http://localhost/';
+	const BOOK_PATH = self::APP_URL . 'public/upload/';
 	public $uri = NULL;
 	public $controller = 'HomeController';
 	public $method = 'index';
