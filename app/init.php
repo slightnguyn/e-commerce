@@ -5,6 +5,7 @@ date_default_timezone_set('Asia/Ho_Chi_Minh');
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
+require 'app/helpers/function.php';
 require 'app/core/App.php';
 require 'app/core/Controller.php';
 require 'app/core/DB.php';

@@ -1,7 +1,7 @@
 <?php
 
 // include base model
-require 'app/core/Model.php';
+require_once 'app/core/Model.php';
 
 class Book extends Model
 {

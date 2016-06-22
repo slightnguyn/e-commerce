@@ -40,16 +40,19 @@
 					</div>
 					<div class="panel-footer">
 						<div class="add-cart">
-							<button class="btn btn-primary pull-right">Add to Cart</button>
+							<p><button class="btn btn-primary pull-right">Add to Cart</button></p>
 							<p class="rating" data-id="<?php echo $book->id; ?>">
-								<a href data-star="1"><i class="fa fa-star-o" data-toggle="tooltip" data-placement="top" title="Very bad"></i></a>
-								<a href data-star="2"><i class="fa fa-star-o" data-toggle="tooltip" data-placement="top" title="Bad"></i></a>
-								<a href data-star="3"><i class="fa fa-star-o" data-toggle="tooltip" data-placement="top" title="Normal"></i></a>
-								<a href data-star="4"><i class="fa fa-star-o" data-toggle="tooltip" data-placement="top" title="Good"></i></a>
-								<a href data-star="5"><i class="fa fa-star-o" data-toggle="tooltip" data-placement="top" title="Very good"></i></a>
+							<?php
+								if (! isset($rateModel)) {
+									$rateModel = $this->model('Rate');
+								}
+								$rate = $rateModel->find($book->id);
+								
+								renderRating(ceil($rate->average));
+							?>
 							</p>
 							<span class="rating-info">
-								<i class="fa fa-flag"></i> 1000 review
+								<i class="fa fa-flag"></i><span class="text-muted"> <?php echo $rate->times; ?> review</span>
 							</span>
 						</div>
 					</div>

@@ -9,7 +9,7 @@ class Controller
 		if (! file_exists($file)) {
 			throw new Exception($file . ' file not found.');
 		}
-		require $file;
+		require_once $file;
 
 		return new $model();
 	}
