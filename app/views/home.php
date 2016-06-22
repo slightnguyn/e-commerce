@@ -49,7 +49,7 @@
 									<button class="btn btn-primary pull-right">Add to Cart</button>
 								</form>
 							</p>
-							<div class="rating" data-id="<?php echo $book->id; ?>">
+							<div class="rating">
 							<?php
 								if (! isset($rateModel)) {
 									$rateModel = $this->model('Rate');
