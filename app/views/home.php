@@ -43,8 +43,13 @@
 					</div>
 					<div class="panel-footer">
 						<div class="add-cart">
-							<p><button class="btn btn-primary pull-right">Add to Cart</button></p>
-							<p class="rating" data-id="<?php echo $book->id; ?>">
+							<p>
+								<form action="/cart/add">
+									<input type="hidden" name="bookId" value="<?php echo $book->id; ?>">
+									<button class="btn btn-primary pull-right">Add to Cart</button>
+								</form>
+							</p>
+							<div class="rating" data-id="<?php echo $book->id; ?>">
 							<?php
 								if (! isset($rateModel)) {
 									$rateModel = $this->model('Rate');
@@ -53,7 +58,7 @@
 								
 								renderRating(ceil($rate->average));
 							?>
-							</p>
+							</div>
 							<span class="rating-info">
 								<i class="fa fa-flag"></i><span class="text-muted"> <?php echo $rate->times; ?> review</span>
 							</span>
