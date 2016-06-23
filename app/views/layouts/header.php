@@ -6,6 +6,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title><?php echo isset($data['title']) ?: 'E-commerce'; ?></title>
+	<link rel="shortcut icon" href="<?php echo App::APP_URL . '/public/upload/icon.png'; ?>">
 	<link rel="stylesheet" href="<?php echo App::APP_URL . '/public/assets/css/bootstrap.min.css'; ?>">
 	<link rel="stylesheet" href="<?php echo App::APP_URL . '/public/assets/css/bootstrap-theme.min.css'; ?>">
 	<link rel="stylesheet" href="<?php echo App::APP_URL . '/public/assets/css/font-awesome.min.css'; ?>">
@@ -20,7 +21,7 @@
 	<?php endif; ?>
 </head>
 <body>
-	<nav class="navbar navbar-default" role="navigation">
+	<nav id="top" class="navbar navbar-default" role="navigation">
 		<div class="container">
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
@@ -65,6 +66,6 @@
 			</div><!-- /.navbar-collapse -->
 		</div>
 	</nav>
-	<main>
+	<main class="page-header">
 
 <?php if (isset($data)) extract($data); ?>

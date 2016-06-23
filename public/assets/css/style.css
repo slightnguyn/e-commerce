@@ -72,6 +72,29 @@ body {
 #cart-title {
 	padding-bottom: 20px;
 }
+footer {
+	background: #00897b;
+	color: #fff;
+	padding: 40px;
+}
+#back-top a {
+	-webkit-transition: 1s;
+	-moz-transition: 1s;
+	transition: 1s;
+}
+#back-top a:hover > i {
+	color: black;
+}
+#back-top a > i {
+	position: fixed;
+	bottom: 70px;
+	right: 30px;
+	font-size: 400%;
+	color: green;
+	-webkit-transition: 1s;
+	-moz-transition: 1s;
+	transition: 1s;
+}
 
 
 @media (max-width: 480px), (max-width: 767px) {
