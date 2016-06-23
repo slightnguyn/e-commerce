@@ -4,7 +4,7 @@ class CartController extends Controller
 {
 	public function index()
 	{
-		$this->view('cart/index', ['javascript-in-body' => 'cart-change.js']);
+		$this->view('cart/index');
 	}
 
 	public function add()
@@ -27,6 +27,8 @@ class CartController extends Controller
 
 			$_SESSION['totalPrice'] = $this->calculatePrice($_SESSION['cart']);
 			$_SESSION['items'] = $this->calculateItems($_SESSION['cart']);
+
+			header('Location: /cart/show/' . $bookId);
 		}
 		else {
 			handleError();
@@ -60,5 +62,44 @@ class CartController extends Controller
 		}
 
 		return $items;
+	}
+
+	public function show($id)
+	{
+		$model = $this->model('Book');
+		$book = $model->find($id);
+
+		$this->view('/cart/show', ['book' => $book]);
+	}
+
+	public function update()
+	{
+		if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') == 'POST') {
+			$items = filter_input(INPUT_POST, 'items', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
+
+			if ($items === NULL || $items === false) {
+				header('Location: /cart');
+				return;
+			}
+
+			foreach ($items as $id => $qty) {
+				if (array_key_exists($id, $_SESSION['cart'])) {
+					if ($qty == 0) {
+						unset($_SESSION['cart'][$id]);
+					}
+					else {
+						$_SESSION['cart'][$id] = $qty;
+					}
+				}
+			}
+
+			$_SESSION['totalPrice'] = $this->calculatePrice($_SESSION['cart']);
+			$_SESSION['items'] = $this->calculateItems($_SESSION['cart']);
+
+			header('Location: /cart');
+		}
+		else {
+			handleError();
+		}
 	}
 }
