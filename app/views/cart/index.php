@@ -7,7 +7,7 @@
 
 				<?php if (!isset($_SESSION['cart']) || count($_SESSION['cart']) == 0) : ?>
 					<h3 class="text-primary page-header"><i class="fa fa-bullhorn"></i> There are no items in your cart.</h3>
-					<h4><a href="/" class="btn btn-link"><i class="fa fa-chevron-circle-right"></i> Please continue shopping!</h4>
+					<p><a href="/"><i class="fa fa-chevron-circle-right"></i> Please continue shopping!</p>
 				<?php else: ?>
 					
 					<div class="table-responsive">
