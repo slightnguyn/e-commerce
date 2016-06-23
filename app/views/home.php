@@ -1,4 +1,4 @@
-<?php include_once 'app/views/layouts/header.php'; extract($data); ?>
+<?php include_once 'app/views/layouts/header.php'; ?>
 
 	<div class="container-fluid">
 	<?php if (count($books) == 0) : ?>
@@ -56,7 +56,9 @@
 								}
 								$rate = $rateModel->find($book->id);
 								
-								renderRating(ceil($rate->average));
+								if ($rate->average > 0) {
+									renderRating(ceil($rate->average));
+								}
 							?>
 							</div>
 							<span class="rating-info">

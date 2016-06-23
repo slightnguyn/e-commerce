@@ -66,3 +66,5 @@
 		</div>
 	</nav>
 	<main>
+
+<?php if (isset($data)) extract($data); ?>
