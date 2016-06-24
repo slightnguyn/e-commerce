@@ -147,7 +147,7 @@ class CartController extends Controller
 					]);
 				}
 				catch (Exception $e) {
-					$modelUser->destroy($userId);
+					if (isset($userId)) $modelUser->destroy($userId);
 					handleError();
 					exit();
 				}
@@ -165,7 +165,7 @@ class CartController extends Controller
 						]);
 					}
 					catch (Exception $e) {
-						$modelUser->destroy($userId);
+						if (isset($userId)) $modelUser->destroy($userId);
 						$modelOrder->destroy($orderId);
 						$modelBookOrder->destroy($orderId);
 						handleError();

@@ -9,4 +9,12 @@ class BookController extends Controller
 
 		$this->view('home', $books);
 	}
+
+	public function show($slug)
+	{
+		$model = $this->model('Book');
+		$book = $model->first('slug', $slug);
+
+		$this->view('book/show', ['book' => $book]);
+	}
 }

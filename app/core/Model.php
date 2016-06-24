@@ -24,6 +24,16 @@ class Model
 		return $stmt->fetch();
 	}
 
+	public function first($column, $value)
+	{
+		$db = DB::connect();
+		$stmt = $db->prepare("SELECT * FROM {$this->table} WHERE {$column} = :val");
+		$stmt->bindParam(':val', $value);
+		$stmt->execute();
+
+		return $stmt->fetch();
+	}
+
 	public function create($fields)
 	{
 		if (! is_array($fields)) throw new InvalidArgumentException('The argument must be an array, ' . gettype($fields) . ' suppliped.');

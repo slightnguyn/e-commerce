@@ -2,7 +2,7 @@
 
 	<div class="container-fluid">
 	<?php if (count($books) == 0) : ?>
-		<div class="notify"><span class="text-danger"><i class="fa fa-bell"></i></span> Book library is empty! Please come back again.</div>
+		<div class="notify text-info"><span class="text-danger"><i class="fa fa-bell"></i></span> Book library is empty! Please come back again.</div>
 	<?php else: ?>
 		<div class="row" id="books">
 		<?php foreach ($books as $book) : ?>
@@ -12,7 +12,7 @@
 						<div class="row">
 							<div class="col-md-12">
 								<h3 class="book-title">
-									<a href="/book/show/<?php echo $book->id; ?>"><?php echo $book->title; ?></a>
+									<a href="/book/show/<?php echo $book->slug; ?>"><?php echo $book->title; ?></a>
 									<span class="text-danger pull-right book-price">$<?php echo $book->price; ?></span>
 									<small class="help-block">written by <?php echo $book->author; ?></small>
 								</h3>
@@ -29,7 +29,11 @@
 									<li>ISBN: <?php echo $book->isbn; ?></li>
 									<li>Publisher: <?php echo $book->publisher; ?></li>
 									<li>Pages: <?php echo $book->pages; ?></li>
-									<li>Category: <a href="/category/show/<?php echo $book->category_id; ?>">
+									<li>Category: <a href="/category/show/<?php
+										if (! isset($model)) {
+											$model = $this->model('Category');
+										}
+										echo $model->find($book->category_id)->slug; ?>">
 									<?php
 										if (! isset($model)) {
 											$model = $this->model('Category');
@@ -46,7 +50,7 @@
 							<p>
 								<form action="/cart/add" method="POST">
 									<input type="hidden" name="bookId" value="<?php echo $book->id; ?>">
-									<button class="btn btn-primary pull-right">Add to Cart</button>
+									<button class="btn btn-primary pull-right"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
 								</form>
 							</p>
 							<div class="rating">

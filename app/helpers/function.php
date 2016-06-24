@@ -46,3 +46,10 @@ function titleForStar($num) {
 			break;
 	}
 }
+
+function str_slug($str) {
+	$str = strtolower($str);
+	$str = preg_replace('/[\+\s\./\\]+/', '-', $str);
+	
+	return $str;
+}

@@ -6,6 +6,13 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title><?php echo isset($data['title']) ?: 'E-commerce'; ?></title>
+	<meta content="<?php echo App::APP_URL; ?>" property="og:url">
+	<meta content="website" property="og:type">
+	<meta content="https://web.facebook.com/thoai.nguyn" property="fb:admins">
+	<meta content="<?php echo 'public/upload/icon.png'; ?>" property="og:image">
+	<meta content="E-commerce" property="og:title">
+	<meta content="Website supplied the products for book, information technology book, programming application book" property="og:description">
+	<meta content="en" property="og:locale">
 	<link rel="shortcut icon" href="<?php echo App::APP_URL . '/public/upload/icon.png'; ?>">
 	<link rel="stylesheet" href="<?php echo App::APP_URL . '/public/assets/css/bootstrap.min.css'; ?>">
 	<link rel="stylesheet" href="<?php echo App::APP_URL . '/public/assets/css/bootstrap-theme.min.css'; ?>">
