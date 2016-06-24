@@ -8,6 +8,7 @@ function handleError($file = NULL) {
 		else {
 			include 'app/views/errors/error.php';
 		}
+		exit();
 	}
 }
 

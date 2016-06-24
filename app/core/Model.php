@@ -23,5 +23,32 @@ class Model
 
 		return $stmt->fetch();
 	}
+
+	public function create($fields)
+	{
+		if (! is_array($fields)) throw new InvalidArgumentException('The argument must be an array, ' . gettype($fields) . ' suppliped.');
+		$columns = implode(', ', array_keys($fields));
+		
+		$placeholder = [];
+		$placeholder = array_pad($placeholder, count($fields), '?');
+		$placeholder = implode(',', $placeholder);
+		
+		$db = DB::connect();
+		$stmt = $db->prepare("INSERT INTO {$this->table} ({$columns}) VALUES({$placeholder})");
+		if (! $stmt->execute(array_values($fields))) {
+			handleError();
+		}
+		return $db->lastInsertId();
+	}
+
+	public function destroy($id)
+	{
+		$db = DB::connect();
+		$stmt = $db->prepare("DELETE FROM {$this->table} WHERE {$this->primaryKey} = :id");
+		$stmt->bindParam(':id', $id, PDO::PARAM_INT);
+		if (! $stmt->execute()) {
+			handleError();
+		}
+	}
 }
 
