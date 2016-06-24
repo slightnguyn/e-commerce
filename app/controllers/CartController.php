@@ -102,4 +102,96 @@ class CartController extends Controller
 			handleError();
 		}
 	}
+
+	public function checkout()
+	{
+		if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') == 'POST') {
+			$errors = [];
+			$errIcon = '<i class="fa fa-times"></i> ';
+
+			if (! isset($_SESSION['username'])) {
+				$fullname = filter_input(INPUT_POST, 'fullname', FILTER_SANITIZE_STRING);
+				if ($fullname === NULL || $fullname == '') $errors['fullname'] = $errIcon . 'Please enter the fullname';
+
+				$address = filter_input(INPUT_POST, 'address', FILTER_SANITIZE_STRING);
+				if ($address === NULL || $address == '') $errors['address'] = $errIcon . 'Please enter the address';
+			}
+
+			$shipName = filter_input(INPUT_POST, 'ship_name', FILTER_SANITIZE_STRING);
+
+			$shipAddress = filter_input(INPUT_POST, 'ship_address', FILTER_SANITIZE_STRING);
+			if ($shipAddress === NULL || $shipAddress == '') $errors['ship_address'] = $errIcon . 'Please enter the ship address';
+		
+			if (count($errors)) {
+				$this->view('cart/checkout', ['data' => $_POST, 'errors' => $errors]);
+			}
+			else {
+				$modelUser = $this->model('User');
+
+				if (! isset($_SESSION['username'])) {
+					$userId = $modelUser->create([
+						'fullname' => $fullname,
+						'address' => $address
+					]);
+				}
+				
+				$customerId = isset($_SESSION['username']) ? $modelUser->getUserByUsername($_SESSION['username'])->id : $userId;
+	
+				$modelOrder = $this->model('Order');
+				try {
+					$orderId = $modelOrder->create([
+						'customer_id' => $customerId,
+						'date' => date('Y-m-d'),
+						'ship_name' => isset($shipName) ? $shipName : NULL,
+						'ship_address' => $shipAddress
+					]);
+				}
+				catch (Exception $e) {
+					$modelUser->destroy($userId);
+					handleError();
+					exit();
+				}
+
+				$modelBook = $this->model('Book');
+				$modelBookOrder = $this->model('BookOrder');
+				
+				foreach ($_SESSION['cart'] as $id => $qty) {
+					try {
+						$modelBookOrder->create([
+							'order_id' => $orderId,
+							'book_id' => $id,
+							'book_price' => $modelBook->find($id)->price,
+							'quantity' => $qty
+						]);
+					}
+					catch (Exception $e) {
+						$modelUser->destroy($userId);
+						$modelOrder->destroy($orderId);
+						$modelBookOrder->destroy($orderId);
+						handleError();
+						exit();
+					}
+				}
+
+				$this->cleanCart();
+
+				header('Location: /cart/success');
+			}
+		}
+		else {
+			$this->view('cart/checkout');
+		}
+	}
+
+	public function cleanCart()
+	{
+		$_SESSION['cart'] = [];
+		$_SESSION['items'] = 0;
+		$_SESSION['totalPrice'] = 0.00;
+	}
+
+	public function success()
+	{
+		$this->view('cart/success');
+	}
 }
