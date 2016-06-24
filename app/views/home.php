@@ -50,6 +50,7 @@
 							<p>
 								<form action="/cart/add" method="POST">
 									<input type="hidden" name="bookId" value="<?php echo $book->id; ?>">
+									<input type="hidden" name="slug" value="<?php echo $book->slug; ?>">
 									<button class="btn btn-primary pull-right"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
 								</form>
 							</p>

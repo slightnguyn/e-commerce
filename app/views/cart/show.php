@@ -14,7 +14,7 @@
 							</div>
 							<div class="col-md-8">
 								<ul class="list-unstyled">
-									<li><a href="/book/show/<?php echo $book->id; ?>"><?php echo $book->title; ?></a></li>
+									<li><a href="/book/show/<?php echo $book->slug; ?>"><?php echo $book->title; ?></a></li>
 									<li><span class="text-muted">ISBN:</span> <?php echo $book->isbn; ?></li>
 									<li><span class="text-muted">Publisher:</span> <?php echo $book->publisher; ?></li>
 									<li><span class="text-muted">Pages:</span> <?php echo $book->pages; ?></li>

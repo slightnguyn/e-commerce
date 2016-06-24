@@ -28,7 +28,7 @@ class CartController extends Controller
 			$_SESSION['totalPrice'] = $this->calculatePrice($_SESSION['cart']);
 			$_SESSION['items'] = $this->calculateItems($_SESSION['cart']);
 
-			header('Location: /cart/show/' . $bookId);
+			header('Location: /cart/show/' . filter_input(INPUT_POST, 'slug', FILTER_SANITIZE_STRING));
 		}
 		else {
 			handleError();
@@ -64,10 +64,10 @@ class CartController extends Controller
 		return $items;
 	}
 
-	public function show($id)
+	public function show($slug)
 	{
 		$model = $this->model('Book');
-		$book = $model->find($id);
+		$book = $model->first('slug', $slug);
 
 		$this->view('/cart/show', ['book' => $book]);
 	}

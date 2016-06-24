@@ -32,7 +32,7 @@
 										<td>
 											<img src="<?php echo App::BOOK_PATH . $item->image; ?>" alt="<?php echo $item->title; ?>"
 												class="img-responsive" width="100" height="100">
-											<a href="/book/show/<?php echo $id; ?>"><?php echo $item->title; ?></a>
+											<a href="/book/show/<?php echo $item->slug; ?>"><?php echo $item->title; ?></a>
 											<span class="text-muted"> by <?php echo $item->author; ?></span>
 										</td>
 										<td style="vertical-align: middle;">$<span class="item-price"><?php echo $item->price; ?></span></td>

@@ -51,6 +51,19 @@ class Model
 		return $db->lastInsertId();
 	}
 
+	public function update($fields, $key)
+	{
+		if (! is_array($fields)) throw new InvalidArgumentException('The argument must be an array, ' . gettype($fields) . ' suppliped.');
+		$columns = implode('=?,', array_keys($fields)) . '=?';
+		$db = DB::connect();
+		$key = (int) $key;
+		$stmt = $db->prepare("UPDATE {$this->table} SET {$columns} WHERE {$this->primaryKey} = $key");
+		
+		if (! $stmt->execute(array_values($fields))) {
+			handleError();
+		}
+	}
+
 	public function destroy($id)
 	{
 		$db = DB::connect();
