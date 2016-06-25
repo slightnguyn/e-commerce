@@ -14,9 +14,9 @@
 	<meta content="Website supplied the products for book, information technology book, programming application book" property="og:description">
 	<meta content="en" property="og:locale">
 	<link rel="shortcut icon" href="<?php echo App::APP_URL . '/public/upload/icon.png'; ?>">
-	<link rel="stylesheet" href="<?php echo App::APP_URL . '/public/assets/css/bootstrap.min.css'; ?>">
-	<link rel="stylesheet" href="<?php echo App::APP_URL . '/public/assets/css/bootstrap-theme.min.css'; ?>">
-	<link rel="stylesheet" href="<?php echo App::APP_URL . '/public/assets/css/font-awesome.min.css'; ?>">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<script src="https://use.fontawesome.com/4cb785ad0e.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 	<link rel="stylesheet" href="<?php echo App::APP_URL . '/public/assets/css/style.css'; ?>">
 
 	<?php if (isset($data['css'])) : ?>
